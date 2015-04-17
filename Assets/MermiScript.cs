@@ -1,0 +1,24 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class MermiScript : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+
+	public Vector3 axis;
+	public float speed = 0.1f;
+
+	// Update is called once per frame
+	void Update () {
+		transform.Translate (axis * speed);
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		Destroy(gameObject);
+
+		Debug.Log("destroy");
+	}
+}
