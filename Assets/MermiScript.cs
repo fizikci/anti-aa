@@ -16,9 +16,20 @@ public class MermiScript : MonoBehaviour {
 		transform.Translate (axis * speed);
 	}
 
-	void OnCollisionEnter(Collision collision) {
-		Destroy(gameObject);
+    void OnCollisionEnter(Collision otherObj)
+    {
+        Destroy(gameObject);
+        if (otherObj.gameObject.tag == "Balon")
+        {
+            Destroy(otherObj.gameObject);
 
-		Debug.Log("destroy");
-	}
+            var kalan = GameObject.FindGameObjectsWithTag("Balon").Length;
+            Debug.Log("kalan: "+kalan);
+            if (kalan == 1)
+                TheGame.Instance.Success();
+        }
+
+        TheGame.Instance.AddMermi();
+
+    }
 }
